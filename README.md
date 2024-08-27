@@ -3,6 +3,28 @@
 
 ## Simple demo showing VM and containers in a Service Mesh
 
+This demo shows a scenario where a container based deployment and VM based deployment are configured 
+together in the same namespace and utilizing OpenShift Service Mesh (OSSM).  
+  
+There are a couple helper scripts to generate load, so that it can be observed in Service Mesh via Kiali.
+
+
+```
+   +-----------+       +----------------+       +-----------------------+       +-------------+  
+   | API Caller | ---> | Ingress Gateway | ---> | Front-end Deployment  | --->  |  Back-end VM|  
+   +-----------+       +----------------+       +-----------------------+       +-------------+  
+         |                        |                        |                       |  
+         |<-----------------------|<-----------------------|<----------------------|  
+          (5) Response from       (4) Response from       (3) Call to VM          (2) Call to Front-end  
+              Front-end to            VM to Front-end         from Front-end        from Ingress Gateway  
+              API Caller  
+
+(1) API Caller makes a call to the Ingress Gateway.
+(2) The Ingress Gateway routes the call to the Front-end Deployment.
+(3) The Front-end Deployment makes a call to the Back-end VM.
+(4) The Back-end VM sends a response back to the Front-end Deployment.
+(5) The Front-end Deployment sends the response from the Back-end VM to the API Caller.
+```
 
 ### Install OSSM operators
 
