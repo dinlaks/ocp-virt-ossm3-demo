@@ -1,35 +1,8 @@
 # ocp-virt-win-iis-ossm-pipeline-demo
 
 
-## TODO:
+## Simple demo showing VM and containers in a Service Mesh
 
-- Leon: Create OSSM skeleton
-
-### Install Windows Base Image
-
-1. Copy the PKI entitlement key from the managed namespace (this is needed because we are using RHEL specific packages)
-  ```
-  oc get secret etc-pki-entitlement -n openshift-config-managed -o json | \
-  jq 'del(.metadata.resourceVersion)' | jq 'del(.metadata.creationTimestamp)' | \
-  jq 'del(.metadata.uid)' | jq 'del(.metadata.namespace)' | \
-  oc -n openshift-virtualization-os-images create -f -
-  ```
-1. Create and build the getiso image
-  ```
-  oc create -f ./k8/win-base-pipeline/build-iso-fetcher.yaml 
-  ```
-1. Trigger a build to create the iso puller image
-  ```
-  oc start-build buildiso -n openshift-virtualization-os-images
-  ```
-1. Create the pipeline to generate the base windows iso
-  ```
-  oc apply -f ./k8/win-base-pipeline/windows-efi-installer-pipeline.yaml
-  ```
-1. Create the pipelinerun which will actually download the iso and build the base windows server golden image
-  ```
-  oc create -f ./k8/win-base-pipeline/windows-efi-installer-pipelinerun.yaml
-  ```
 
 ### Install OSSM operators
 
@@ -149,26 +122,3 @@ This is calling the container deployment via the gateway. Internally this API is
 (4) The Back-end VM sends a response back to the Front-end Deployment.
 (5) The Front-end Deployment sends the response from the Back-end VM to the API Caller.
 ```
-
-### IIS VM Deployment
-
-To deploy windows app directly from repo:  
-
-# Configmap with sys-prep data winvm-iis
-```
-oc create -n demo-vm-ossm -f k8/deployments/iisvm/unattendconfigmap.yaml
-```
-
-# Service for IIS API winvm-iis
-```
-oc create -n demo-vm-ossm -f k8/deployments/iisvm/service.yaml
-oc create -n demo-vm-ossm -f k8/deployments/iisvm/route.yaml
-```
-
-# The VM creation
-```
-oc create -n demo-vm-ossm -f k8/deployments/iisvm/vm.yaml
-```
-
-
-### TODO
