@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
   name: demo-gateway
-  namespace: istio-system
+  namespace: demo-vm-ossm3.0
 spec:
   selector:
     istio: ingressgateway

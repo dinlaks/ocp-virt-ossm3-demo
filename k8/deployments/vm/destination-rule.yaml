@@ -14,9 +14,9 @@ spec:
     trafficPolicy: 
       loadBalancer:
         simple: ROUND_ROBIN
-#  - name: VM2
-#    labels:
-#      version: VM2
-#    trafficPolicy: 
-#      loadBalancer:
-#        simple: ROUND_ROBIN
+  - name: VM2
+    labels:
+      version: VM2
+    trafficPolicy: 
+      loadBalancer:
+        simple: ROUND_ROBIN

@@ -12,7 +12,7 @@ rules:
     apiGroups:
       - cdi.kubevirt.io
       - kubevirt.io
-    resources:
+    k8:
       - datavolumes
       - datasources
       - virtualmachines
@@ -20,7 +20,7 @@ rules:
       - create
     apiGroups:
       - ''
-    resources:
+    k8:
       - pods
   - verbs:
       - watch
@@ -28,14 +28,14 @@ rules:
       - list
     apiGroups:
       - kubevirt.io
-    resources:
+    k8:
       - virtualmachineinstances
   - verbs:
       - get
       - delete
     apiGroups:
       - ''
-    resources:
+    k8:
       - persistentvolumeclaims
 ---
 kind: RoleBinding

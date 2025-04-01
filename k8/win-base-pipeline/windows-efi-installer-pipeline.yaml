@@ -140,7 +140,7 @@ spec:
                   url: $(tasks.get-server-iso.results.windows-iso-url)
               storage:
                 volumeMode: Filesystem
-                resources:
+                k8:
                   requests:
                     storage: 9Gi
         - name: waitForSuccess
@@ -194,7 +194,7 @@ spec:
               generateName: windows-efi-root-disk-
             spec:
               storage:
-                resources:
+                k8:
                   requests:
                     storage: 20Gi
               source:
