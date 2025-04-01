@@ -51,23 +51,19 @@ sh install_operators.sh
 ### Create Service Mesh control plane
 
 You can run the below instructions manually, as described, or run the helper scripts in order
-to save some copy/pasta time:
+to save some copy/paste time:
 
 verify one script completes before running the next one in order.
 
 TODO: add waiting until success capability in scripts
 
 ```
-sh 1-setup-mesh.sh
-
-sh 2-setup-app.sh
-
-sh 3-test-app.sh
+sh install_ossm3_control.sh
 ```
 
 
-Set up ossm3.0
-------------
+### Set up ossm3.0
+
 ```bash
 oc new-project istio-system
 ```
@@ -103,15 +99,14 @@ Set up the ingress gateway via Gateway API (this will live next to the previousl
 oc apply -k ./k8/gateway
 ```
 
-## Set up Tempo and OpenTelemetryCollector  
+### Set up Tempo and OpenTelemetryCollector  
 Provision and configure a tracing-system via a TempoStack for distributed tracing:
 1. MinIO for persistent S3 storage
 2. Tempo
 3. OpenTelemetry CRs:
 4. OpenTelemetryCollector
 
-Telemetry
-------------  
+### Telemetry  
 ```bash
 oc new-project tracing-system
 ```
@@ -146,8 +141,7 @@ oc label namespace opentelemetrycollector istio-injection=enabled
 ```
 > **_NOTE:_** `istio-injection=enabled` label works only when the name of Istio CR is `default`. If you use a different name as `default`, you need to use `istio.io/rev=<istioCR_NAME>` label instead of `istio-injection=enabled` in the all next steps of this example. Also, you will need to update values `config_map_name`, `istio_sidecar_injector_config_map_name`, `istiod_deployment_name`, `url_service_version` in the Kiali CR.
 
-## Set up Kiali & OpenShift Service Mesh Console Plugin
-------------
+### Set up Kiali & OpenShift Service Mesh Console Plugin
 Create cluster role binding for kiali to be able to read ocp monitoring
 ```bash
 oc apply -f ./k8/Kiali/kialiCrb.yaml -n istio-system
@@ -170,7 +164,7 @@ oc apply -f ./k8/Kiali/kialiOssmcCr.yaml -n istio-system
 oc wait -n istio-system --for=condition=Successful OSSMConsole ossmconsole --timeout 120s
 ```
 
-## Monitoring Configuration:
+### Monitoring Configuration:
 1. Enable User Monitoring with OpenShift Observability (Prometheus).
 2. Enable SystemMonitor in the istio-system namespace.
 3. Enable PodMonitor in all Istio-related namespaces as well as application namespaces:
@@ -179,8 +173,7 @@ oc wait -n istio-system --for=condition=Successful OSSMConsole ossmconsole --tim
    3c. demo-vm-ossm3
 4. Ensure Labelling all Istio-related and application namespaces with istio-injection=enabled.
 
-Set up OCP user monitoring workflow
-------------
+### Set up OCP user monitoring workflow
 First, OCP user monitoring needs to be enabled
 ```bash
 oc apply -f ./k8/Monitoring/ocpUserMonitoring.yaml
@@ -193,6 +186,18 @@ oc apply -f ./k8/Monitoring/podMonitor.yaml -n istio-ingress
 ```
 
 ## Demo VM and container with OSSM 3.0 Configuration
+
+You can run the below instructions manually, as described, or run the helper scripts in order
+to save some copy/paste time:
+
+verify one script completes before running the next one in order.
+
+TODO: add waiting until success capability in scripts
+
+```
+sh install_ossm3_demo.sh
+```
+
 ### Create Namespace for app
 
 Create a namespace/project called `demo-vm-ossm` which is where the control plane will be deployed.  
