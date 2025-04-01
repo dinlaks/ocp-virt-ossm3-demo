@@ -271,4 +271,4 @@ This is calling the container deployment via the gateway. Internally this API is
 You can also use the helper script to generate traffic continuously 
 `sh generate-traffic-app.sh`
 
-**_Credits_** : Thanks to `Leon Levy` for re-using his demo and create this demo based of OSSM 3.0 
+**_Credits_** : Thanks to `Leon Levy` who assisted me in some of the issues and helping to build this demo.  
