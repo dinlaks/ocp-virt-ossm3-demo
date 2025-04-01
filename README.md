@@ -217,16 +217,22 @@ Deploy demo-vm-gateway
 ### Create placeholder container deployment and VM with service mesh annotations (back-end)
 
 `oc apply -f ./k8/deployments/vm/vm-template-vm1.yaml -n demo-vm-ossm3`
+
 `oc apply -f ./k8/deployments/vm/vm-template-vm2.yaml -n demo-vm-ossm3`
+
 `oc apply -f ./k8/deployments/vm/service.yaml -n demo-vm-ossm3`
+
 `oc apply -f ./k8/deployments/vm/virtual-service.yaml -n demo-vm-ossm3`
 
 
 #### Container Deployement (front-end)
  
 `oc apply -f ./k8/deployments/container/deployment.yaml -n demo-vm-ossm3`
+
 `oc apply -f ./k8/deployments/container/service.yaml -n demo-vm-ossm3`
+
 `oc apply -f ./k8/deployments/container/virtual-service.yaml -n demo-vm-ossm3`
+
 `oc apply -f ./k8/deployments/container/destinate-rule.yaml -n demo-vm-ossm3`
 
 ### Ensure setup is working
