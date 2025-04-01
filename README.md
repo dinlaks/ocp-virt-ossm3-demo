@@ -176,9 +176,8 @@ oc wait -n istio-system --for=condition=Successful OSSMConsole ossmconsole --tim
 3. Enable PodMonitor in all Istio-related namespaces as well as application namespaces:
    3a. istio-system
    3b. istio-ingress
-   3c. bookinfo
-   3d. rest-api-with-mesh
-4. Label all Istio-related and application namespaces with istio-injection=enabled.
+   3c. demo-vm-ossm3
+4. Ensure Labelling all Istio-related and application namespaces with istio-injection=enabled.
 
 Set up OCP user monitoring workflow
 ------------
@@ -206,7 +205,7 @@ Deploy demo-vm-gateway
 `oc apply -f k8/deployments/demo-vm-gateway.yaml -n demo-vm-ossm3.0`
 
 
-### Add namespace to ossm3.0 injection
+### Add namespace to ossm3 injection
 
 `oc label namespace demo-vm-ossm3 istio-injection=enabled`
 
