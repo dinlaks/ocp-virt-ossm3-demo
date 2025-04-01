@@ -216,6 +216,8 @@ Deploy demo-vm-gateway
 
 ### Create placeholder container deployment and VM with service mesh annotations (back-end)
 
+#### VM Deployement (backend-end)
+
 `oc apply -f ./k8/deployments/vm/vm-template-vm1.yaml -n demo-vm-ossm3`
 
 `oc apply -f ./k8/deployments/vm/vm-template-vm2.yaml -n demo-vm-ossm3`
