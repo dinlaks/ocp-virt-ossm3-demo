@@ -26,7 +26,7 @@ There are a couple helper scripts to generate load, so that it can be observed i
 (5) The Front-end Deployment sends the response from the Back-end VM to the API Caller.
 ```
 
-### Install ossm3.0.0 operators
+### Install ossm3 operators and dependencies
 *(Assumes the OpenShift Virtualization operator has already been installed and is up and running)*  
 
 To install Red Hat OpenShift Service Mesh, you must install the Red Hat OpenShift Service Mesh 3.0 Operator. Repeat the procedure for each additional Operator you want to install. 
